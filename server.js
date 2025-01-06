@@ -27,6 +27,20 @@ app.post('/videos', async (req, reply) => {
     return reply.status(201).send()
 })
 
+
+app.put('/videos/:id', (req, reply) => {
+    const videoId = req.params.id
+    const { title, description, duration } = req.body
+
+    database.update(videoId, {
+        title,
+        description,
+        duration
+    })
+
+    return reply.status(204).send()
+})
+
 try {
     await app.listen({ port: 3333 })
 } catch (err) {
