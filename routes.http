@@ -11,10 +11,11 @@ Content-Type: application/json
 GET http://localhost:3333/videos
 
 ###
-PUT http://localhost/3333/videos/5ca5330a-634f-4b4f-a6ca-a4573e06b013
+PUT http://localhost:3333/videos/ff1e4d7f-61d7-4829-8925-3bea532e7105
+Content-Type: application/json
 
 {
-    "title": "My first video",
+    "title": "My first video 001",
     "description": "First video added",
     "duration": 150
 }
