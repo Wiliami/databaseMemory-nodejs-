@@ -1,19 +1,19 @@
 import Fastify from 'fastify'
 import { DatabaseMemory } from './DatabaseMemory.js'
 
-const databaseMemory = new DatabaseMemory()
+const database = new DatabaseMemory()
 
-const fastify = Fastify({
+const app = Fastify({
     logger: true
 })
 
-fastify.get('/videos', async (req, reply) => {
-    const videos = databaseMemory.list()
+app.get('/videos', async (req, reply) => {
+    const videos = database.list()
 
     return videos
 })
 
-fastify.post('/videos', async (req, reply) => {
+app.post('/videos', async (req, reply) => {
     const { title, description, duration } = req.body 
 
     const video = {
@@ -22,14 +22,14 @@ fastify.post('/videos', async (req, reply) => {
         duration
     }
 
-    databaseMemory.create(video)
+    database.create(video)
 
     return reply.status(201).send()
 })
 
 try {
-    await fastify.listen({ port: 3333 })
+    await app.listen({ port: 3333 })
 } catch (err) {
-    fastify.log.error(err)
+    app.log.error(err)
     process.exit(1)
 }
