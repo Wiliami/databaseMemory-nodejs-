@@ -20,8 +20,8 @@ export class DatabaseMemory {
         this.#videos.set(id, video)
     }
 
-    update() {
-
+    update(id, video) {
+        this.#videos.set(id, video)
     }
 
     delete() {
